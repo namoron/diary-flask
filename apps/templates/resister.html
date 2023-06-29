@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resister</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename = 'style.css')}}"
+    />
+  </head>
+
+  <body>
+    <h2>問い合わせフォーム</h2>
+    {% with messages  = get_flashed_messages()%}
+    {%if messages%}
+    <ul>
+        {%for message in messages%}
+        <li class  = "flash">{{message}}</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+    {%endwith%}
+    <form
+        action = "{{url_for('contact_complete')}}"
+        method  = "POST"
+        novalidate = "novalidate"
+    >
+    <table>
+        <tr>
+            <td>日付</td>
+            <td>
+                <input
+                    type="date"
+                    name="date"
+                    value="{{ date}}"
+                    placeholder="日付"
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>内容</td>
+            <td>
+                <textarea
+                name="description" placeholder="内容">{{description }}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>写真</td>
+            <td>
+                <input
+                    type="file"
+                    name="photo"
+                    value="{{ photo}}"
+                    placeholder="写真"
+                />
+            </td>
+        </tr>
+    </table>
+            <input type="submit" value="問い合わせ" />
+            </form>
+        </body>
+    </html>
+</body>
+</html>
